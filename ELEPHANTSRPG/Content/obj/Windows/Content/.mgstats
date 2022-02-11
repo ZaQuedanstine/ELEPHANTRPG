@@ -1,5 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 "C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/bullet.png","C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/bin/Windows/Content/Sprites/bullet.xnb","TextureProcessor","Texture2DContent",153,4181,0.1657734
 "C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/grass.png","C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/bin/Windows/Content/Sprites/grass.xnb","TextureProcessor","Texture2DContent",267,4181,0.1610428
-"C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/player.png","C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/bin/Windows/Content/Sprites/player.xnb","TextureProcessor","Texture2DContent",201,4181,0.0023702
+"C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/player.png","C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/bin/Windows/Content/Sprites/player.xnb","TextureProcessor","Texture2DContent",849,16469,0.1593937
 "C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/water.png","C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/bin/Windows/Content/Sprites/water.xnb","TextureProcessor","Texture2DContent",342,4181,0.0026394

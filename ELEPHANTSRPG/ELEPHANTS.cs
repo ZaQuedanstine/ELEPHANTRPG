@@ -12,7 +12,8 @@ namespace ELEPHANTSRPG
         private GraphicsDeviceManager _graphics;
         private Textures textures;
         private SpriteBatch _spriteBatch;
-        private List<WorldObject> objects;
+        private List<WorldObject> bullets;
+        private Player player;
         private Map map;
 
         public ELEPHANTS()
@@ -25,10 +26,10 @@ namespace ELEPHANTSRPG
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             map = new Map();
-            objects = new List<WorldObject>();
-            objects.Add(new Player(new Vector2(200, 200)));
+            player = new Player(new Vector2(200, 200));
+            bullets = new List<WorldObject>();
+            textures = new Textures();
             base.Initialize();
         }
 
@@ -37,50 +38,60 @@ namespace ELEPHANTSRPG
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             textures.LoadContent(Content);
-            
-            
-            foreach (var worldObject in objects)
-            {
-                worldObject.LoadContent(Content);
-            }
+            player.LoadContent(textures.Player);
             map.LoadContent(Content);
             
             map.populateMap();
-            // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
-
-            foreach (var worldObject in objects)
+            //update player
+            player.Update(gameTime);
+            map.Update(gameTime, player);
+            if(map.PlayerIsCollidingWithSolidTile)
             {
-                worldObject.Update(gameTime);
+                player.UndoUpdate();
             }
-            Player player = (objects[0] as Player);
-            if (player.IsShooting)
+
+            //addd any bullets the player is shooting
+            if (player.IsShooting && textures.Bullet != null)
             {
-                Bullet bullet = new Bullet(player.Direction, player.Position);
-                objects.Add(bullet);
-                bullet.LoadContent(Content);
+                Bullet bullet = new Bullet(player.ShootingDirection, player.Position, GraphicsDevice);
+                bullet.LoadContent(textures.Bullet);
+                bullets.Add(bullet);
+                
+            }
+            //updates bullets and removes any that are not on the screen
+            List<WorldObject> bulletsToRemove = new List<WorldObject>();
+            foreach (var bullet  in bullets)
+            {
+                
+                bullet.Update(gameTime);
+                if((bullet as Bullet).IsOffScreen)
+                {
+                    bulletsToRemove.Add(bullet);
+                }
+            }
+            foreach (var bullet in bulletsToRemove)
+            {
+                bullets.Remove(bullet);
             }
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
+            GraphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin();
             map.Draw(gameTime, _spriteBatch);
-            foreach (var worldObject in objects)
+            player.Draw(gameTime, _spriteBatch);
+            foreach (var bullet in bullets)
             {
-                worldObject.Draw(gameTime, _spriteBatch);
+                bullet.Draw(gameTime, _spriteBatch);
             }
             _spriteBatch.End();
             base.Draw(gameTime);

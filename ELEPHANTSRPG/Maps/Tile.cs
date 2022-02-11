@@ -13,25 +13,27 @@ namespace ELEPHANTSRPG.Maps
         private Texture2D texture;
         private BoundingRectangle bounds;
 
+        public BoundingRectangle Bounds { get => bounds; }
+        public Vector2 Position;
+
         public bool IsSolid { get; private set; }
 
-        public Tile(Texture2D theTexture, bool isSolid)
+        public Tile(Texture2D theTexture, bool isSolid, Vector2 position)
         {
             texture = theTexture;
             IsSolid = isSolid;
+            Position = position;
+            bounds = new BoundingRectangle(position - new Vector2(16, 16), 32, 32);
         }
 
         public void Update(GameTime gameTime)
         {
-            if(IsSolid)
-            {
 
-            }
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 position)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, Color.White);
+            spriteBatch.Draw(texture, Position, Color.White);
         }
     }
 }

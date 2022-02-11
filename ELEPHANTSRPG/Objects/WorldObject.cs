@@ -17,7 +17,7 @@ namespace ELEPHANTSRPG.Objects
         /// The Load Content method of the world object for loading textures
         /// </summary>
         /// <param name="content">the content manager of the game that needs to load the content</param>
-        public abstract void LoadContent(ContentManager content);
+        public abstract void LoadContent(Texture2D texture);
 
         /// <summary>
         /// The Update method to make the object "do" stuff

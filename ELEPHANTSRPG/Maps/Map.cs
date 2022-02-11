@@ -5,6 +5,7 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using ELEPHANTSRPG.Objects;
 
 namespace ELEPHANTSRPG.Maps
 {
@@ -17,6 +18,7 @@ namespace ELEPHANTSRPG.Maps
         private int height;
         private int[,] theMap;
         private Tile[,] tiles;
+        public bool PlayerIsCollidingWithSolidTile;
 
         public Map()
         {
@@ -36,8 +38,8 @@ namespace ELEPHANTSRPG.Maps
             {
                 for (int j = 0; j < height; j++)
                 {
-                    if (theMap[i, j] == 0) tiles[i, j] = new Tile(water, true);
-                    else tiles[i, j] = new Tile(grass, false);
+                    if (theMap[i, j] == 0) tiles[i, j] = new Tile(water, true, new Vector2(i * 32, j * 32));
+                    else tiles[i, j] = new Tile(grass, false, new Vector2(i * 32, j * 32));
                 }
             }
 
@@ -50,6 +52,22 @@ namespace ELEPHANTSRPG.Maps
             water = content.Load<Texture2D>("Sprites/water");
         }
 
+        public void Update(GameTime gameTIme, Player player)
+        {
+            PlayerIsCollidingWithSolidTile = false;
+            for (int i = 0; i < width; i++)
+                for (int j = 0; j < height; j++)
+                {
+                    if(tiles[i,j].IsSolid == true)
+                    {
+                        if (tiles[i, j].Bounds.CollidesWith(player.Bounds))
+                        {
+                            PlayerIsCollidingWithSolidTile = true;
+                        }
+                    }
+                }
+        }
+
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Texture2D texture;
@@ -59,7 +77,7 @@ namespace ELEPHANTSRPG.Maps
                     if (theMap[i, j] == 1)
                         texture = grass;
                     else texture = water;
-                    tiles[i, j].Draw(gameTime, spriteBatch, new Vector2(i * 32, j * 32));
+                    tiles[i, j].Draw(gameTime, spriteBatch);
                 }
         }
     }
