@@ -39,3 +39,6 @@ C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\obj\Debug\netcoreapp3.1\EL
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\obj\Debug\netcoreapp3.1\ELEPHANTSRPG.pdb
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\obj\Debug\netcoreapp3.1\ELEPHANTSRPG.genruntimeconfig.cache
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Sprites\bullet.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Sprites\health.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\bangers.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Sprites\baddie.xnb

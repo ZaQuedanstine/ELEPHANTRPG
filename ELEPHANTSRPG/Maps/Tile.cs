@@ -23,7 +23,7 @@ namespace ELEPHANTSRPG.Maps
             texture = theTexture;
             IsSolid = isSolid;
             Position = position;
-            bounds = new BoundingRectangle(position - new Vector2(16, 16), 32, 32);
+            bounds = new BoundingRectangle(position + new Vector2(16, 16), 32, 32);
         }
 
         public void Update(GameTime gameTime)

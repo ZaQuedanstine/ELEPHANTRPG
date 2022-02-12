@@ -11,10 +11,19 @@ namespace ELEPHANTSRPG.Objects
 {
     public enum Direction
     {
-        North,
-        East,
         South,
-        West
+        East,
+        West,
+        North
+    }
+
+    public enum HealthStatus
+    {
+        Full,
+        Three_Quarters,
+        Half,
+        One_Quarter,
+        Empty
     }
 
     public class Player : WorldObject
@@ -25,6 +34,12 @@ namespace ELEPHANTSRPG.Objects
         public Vector2 Position { get; private set; }
         public BoundingRectangle Bounds { get => bounds; }
 
+        public bool Hit;
+        public bool IsDead;
+        public int TotalNumOfPeanuts = 3;
+        public int CurrentPeanut = 3;
+        public HealthStatus LifeLeftOnCurrentPeanut = HealthStatus.Full;
+
         private Vector2 previousPosition;
         private BoundingRectangle bounds;
         private double shootTimer;
@@ -32,13 +47,15 @@ namespace ELEPHANTSRPG.Objects
         private Texture2D texture;
         private KeyboardState currentKeyboardState;
         private KeyboardState previousKeyboardState;
+        private double animationTimer;
+        private Rectangle rectangle = new Rectangle(0,0,32,32);
         
 
         public Player(Vector2 startPos)
         {
             Position = startPos;
-            shootTimeDelay = 0.3;
-            bounds = new BoundingRectangle(startPos - new Vector2(-16,-16), 32, 32);
+            shootTimeDelay = 0.4;
+            bounds = new BoundingRectangle(startPos.X + 16, startPos.Y + 16, 20, 32);
         }
 
         public override void LoadContent(Texture2D _texture)
@@ -55,26 +72,38 @@ namespace ELEPHANTSRPG.Objects
             IsShooting = false;
 
             float t = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //Health Stuff
+            if(Hit)
+            {
+                if (LifeLeftOnCurrentPeanut == HealthStatus.Empty)
+                {
+                    LifeLeftOnCurrentPeanut = HealthStatus.Full;
+                    CurrentPeanut--;
+                }
+                else LifeLeftOnCurrentPeanut++;
+                if (CurrentPeanut == 1 && LifeLeftOnCurrentPeanut == HealthStatus.Empty) IsDead = true;
+                Hit = false;
+            }
 
             //Movement
             if (currentKeyboardState.IsKeyDown(Keys.W))
             {
-                Position += new Vector2(0, -75) * t;
+                Position += new Vector2(0, -100) * t;
                 Direction = Direction.North;
             }
             if (currentKeyboardState.IsKeyDown(Keys.S))
             {
-                Position += new Vector2(0, 75) * t;
+                Position += new Vector2(0, 100) * t;
                 Direction = Direction.South;
             }
             if (currentKeyboardState.IsKeyDown(Keys.D))
             {
-                Position += new Vector2(75, 0) * t;
+                Position += new Vector2(100, 0) * t;
                 Direction = Direction.East;
             }
             if (currentKeyboardState.IsKeyDown(Keys.A))
             {
-                Position += new Vector2(-75, 0) * t;
+                Position += new Vector2(-100, 0) * t;
                 Direction = Direction.West;
             }
 
@@ -116,19 +145,31 @@ namespace ELEPHANTSRPG.Objects
                 }
             }
 
+            if (IsShooting) rectangle.X = 96;
             //Updates the bounds
-            bounds.X = Position.X - 16;
-            bounds.Y = Position.Y - 16;
+            bounds.X = Position.X + 16;
+            bounds.Y = Position.Y + 16;
         }
 
         public void UndoUpdate()
         {
             Position = previousPosition;
+            bounds.X = Position.X + 16;
+            bounds.Y = Position.Y + 16;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Position, new Rectangle(0, 0, 32, 32), Color.White);
+            animationTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            if(animationTimer >= 0.3)
+            {
+                animationTimer = 0;
+                if (rectangle.X < 64) rectangle.X += 32;
+                else rectangle.X = 0;
+                rectangle.Y = 32 * (int)Direction;
+            }
+            if(!IsDead)
+            spriteBatch.Draw(texture, Position, rectangle, Color.White);
         }
     }
 }

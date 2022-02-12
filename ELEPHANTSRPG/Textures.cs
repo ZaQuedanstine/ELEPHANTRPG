@@ -13,6 +13,8 @@ namespace ELEPHANTSRPG
         public Texture2D Bullet;
         public Texture2D Grass;
         public Texture2D Water;
+        public Texture2D Health;
+        public Texture2D Baddie;
 
         public void LoadContent(ContentManager content)
         {
@@ -20,6 +22,8 @@ namespace ELEPHANTSRPG
             Bullet = content.Load<Texture2D>("Sprites/bullet");
             Grass = content.Load<Texture2D>("Sprites/grass");
             Water = content.Load<Texture2D>("Sprites/water");
+            Health = content.Load<Texture2D>("Sprites/health");
+            Baddie = content.Load<Texture2D>("Sprites/baddie");
         }
     }
 }

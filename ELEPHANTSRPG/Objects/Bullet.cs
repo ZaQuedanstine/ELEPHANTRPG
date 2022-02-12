@@ -4,14 +4,17 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ELEPHANTSRPG.Collisions;
 
 namespace ELEPHANTSRPG.Objects
 {
     public class Bullet: WorldObject
     {
         public bool IsOffScreen;
+        public BoundingRectangle Bounds { get => bounds; }
 
-        const float velocity = 200;
+        private BoundingRectangle bounds;
+        const float velocity = 250;
         private Texture2D texture;
         private Direction direction;
         private Vector2 position;
@@ -23,8 +26,11 @@ namespace ELEPHANTSRPG.Objects
         {
             direction = bulletDirection;
             position = initialPosition;
+            position.X += 16;
+            position.Y += 8;
             maxX = graphics.Viewport.Width;
             maxY = graphics.Viewport.Height;
+            bounds = new BoundingRectangle(position.X + 16, position.Y + 16, 4, 8);
             switch(direction)
             {
                 case Direction.East:
@@ -70,7 +76,8 @@ namespace ELEPHANTSRPG.Objects
                     break;
 
             }
-
+            bounds.X = position.X + 16;
+            bounds.Y = position.Y + 16;
             if (position.X < -32 || position.X > maxX || position.Y < -32 || position.Y > maxY) IsOffScreen = true;
         }
     }

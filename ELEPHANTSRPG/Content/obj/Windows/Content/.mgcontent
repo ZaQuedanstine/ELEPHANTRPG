@@ -4,12 +4,18 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/bangers.spritefont</File>
+    <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/baddie.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/bullet.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/grass.png</File>
+    <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/health.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/player.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/water.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
