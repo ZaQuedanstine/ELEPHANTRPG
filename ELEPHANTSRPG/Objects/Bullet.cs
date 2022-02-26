@@ -22,14 +22,14 @@ namespace ELEPHANTSRPG.Objects
         private int maxY;
         private float angle;
 
-        public Bullet(Direction bulletDirection, Vector2 initialPosition, GraphicsDevice graphics)
+        public Bullet(Direction bulletDirection, Vector2 initialPosition)
         {
             direction = bulletDirection;
             position = initialPosition;
             position.X += 16;
             position.Y += 8;
-            maxX = graphics.Viewport.Width;
-            maxY = graphics.Viewport.Height;
+            maxX = 800;
+            maxY = 450;
             bounds = new BoundingRectangle(position.X + 16, position.Y + 16, 4, 8);
             switch(direction)
             {
@@ -53,9 +53,9 @@ namespace ELEPHANTSRPG.Objects
             spriteBatch.Draw(texture, position, null, Color.White, angle, new Vector2(16, 16), 1, SpriteEffects.None, 0);
         }
 
-        public override void LoadContent(Texture2D _texture)
+        public override void LoadContent(ContentManager content)
         {
-            texture = _texture;
+            texture = content.Load<Texture2D>("Sprites/bullet");
         }
 
         public override void Update(GameTime gameTime)

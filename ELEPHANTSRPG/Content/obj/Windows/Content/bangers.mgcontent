@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/bangers.spritefont</SourceFile>
-  <SourceTime>2022-02-11T19:42:51.637991-06:00</SourceTime>
+  <SourceTime>2022-02-25T20:45:50.6492346-06:00</SourceTime>
   <DestFile>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/bin/Windows/Content/bangers.xnb</DestFile>
-  <DestTime>2022-02-11T19:42:52.6722978-06:00</DestTime>
+  <DestTime>2022-02-25T20:45:53.1197691-06:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2020-08-10T11:17:54-05:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

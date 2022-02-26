@@ -42,3 +42,16 @@ C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Co
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Sprites\health.xnb
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\bangers.xnb
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Sprites\baddie.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\blank.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Sprites\Banner.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Sprites\cloud.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Sprites\grass_32x32.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Sprites\pack.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\bangersBig.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Music\Buckbreak.wma
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Music\Buckbreak.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Music\CantinaRag.wma
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Music\CantinaRag.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\SFX\Explosion.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\SFX\Hurt.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\SFX\Shoot.xnb

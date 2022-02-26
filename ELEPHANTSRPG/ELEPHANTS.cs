@@ -52,12 +52,12 @@ namespace ELEPHANTSRPG
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             textures.LoadContent(Content);
-            player.LoadContent(textures.Player);
-            hud.LoadContent(textures.Health);
+            player.LoadContent(Content);
+            hud.LoadContent(Content);
             map.LoadContent(Content);
             foreach(var baddie in baddies)
             {
-                baddie.LoadContent(textures.Baddie);
+                baddie.LoadContent(Content);
             }
             map.populateMap();
         }
@@ -86,8 +86,8 @@ namespace ELEPHANTSRPG
             //addd any bullets the player is shooting
             if (player.IsShooting && textures.Bullet != null)
             {
-                Bullet bullet = new Bullet(player.ShootingDirection, player.Position, GraphicsDevice);
-                bullet.LoadContent(textures.Bullet);
+                Bullet bullet = new Bullet(player.ShootingDirection, player.Position);
+                bullet.LoadContent(Content);
                 bullets.Add(bullet);
                 
             }

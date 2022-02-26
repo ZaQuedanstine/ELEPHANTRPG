@@ -58,9 +58,9 @@ namespace ELEPHANTSRPG.Objects
             bounds = new BoundingRectangle(startPos.X + 16, startPos.Y + 16, 20, 32);
         }
 
-        public override void LoadContent(Texture2D _texture)
+        public override void LoadContent(ContentManager content)
         {
-            texture = _texture;
+            texture = content.Load<Texture2D>("Sprites/player");
         }
 
         public override void Update(GameTime gameTime)

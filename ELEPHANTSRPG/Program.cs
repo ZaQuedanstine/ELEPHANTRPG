@@ -7,7 +7,7 @@ namespace ELEPHANTSRPG
         [STAThread]
         static void Main()
         {
-            using (var game = new ELEPHANTS())
+            using (var game = new Game1())
                 game.Run();
         }
     }

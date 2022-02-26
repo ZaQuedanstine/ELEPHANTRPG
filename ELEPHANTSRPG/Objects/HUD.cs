@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,9 +18,10 @@ namespace ELEPHANTSRPG.Objects
         {
             player = thePlayer;
         }
-        public void LoadContent(Texture2D texture)
+
+        public void LoadContent(ContentManager content)
         {
-            peanuts = texture;
+            peanuts = content.Load<Texture2D>("Sprites/health");
         }
 
         public void Update(GameTime gameTime)

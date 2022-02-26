@@ -13,7 +13,6 @@ namespace ELEPHANTSRPG.Maps
     {
         private Texture2D grass;
         private Texture2D water;
-        private string mapName;
         private int width;
         private int height;
         private int[,] theMap;
