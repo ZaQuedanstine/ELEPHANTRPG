@@ -29,7 +29,7 @@ namespace ELEPHANTSRPG.Maps
             var lines = data.Split('\n');
 
             var tileSetFileName = lines[0].Trim();
-            _tilesetTexture = content.Load<Texture2D>(tileSetFileName);
+            _tilesetTexture = content.Load<Texture2D>("Sprites/" + tileSetFileName);
 
             var secondLine = lines[1].Split(',');
             _tileWidth = int.Parse(secondLine[0]);
@@ -65,16 +65,19 @@ namespace ELEPHANTSRPG.Maps
 
         public bool CheckForCollisions(WorldObject thing)
         {
-            for(int y = 0; y < _mapWidth; y++)
+            for(int y = 0; y < _mapHeight; y++)
             {
-                for(int x = 0; x < _mapHeight; x++)
+                for(int x = 0; x < _mapWidth; x++)
                 {
                     int index = y * _mapWidth + x;
                     int maptile = _map[index];
                     if(maptile == 2 || maptile == 3)
                     {
-                        BoundingRectangle bounds = new BoundingRectangle(new Vector2(x * 32, y * 32), 32, 32);
-                        return thing.Bounds.CollidesWith(bounds);
+                        BoundingRectangle bounds = new BoundingRectangle(new Vector2(x * _tileWidth + 16, y * _tileHeight + 16), 32, 32);
+                        if(thing.Bounds.CollidesWith(bounds))
+                        {
+                            return true;
+                        }
                     }
                 }
             }

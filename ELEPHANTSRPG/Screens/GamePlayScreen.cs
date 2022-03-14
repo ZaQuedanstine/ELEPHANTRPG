@@ -19,7 +19,7 @@ namespace ELEPHANTSRPG.Screens
     {
         private List<WorldObject> bullets;
         private Player player;
-        private Map map;
+        private Tilemap _map;
         private HUD hud;
         private SpriteFont bangers;
         private SpriteFont bangersBig;
@@ -52,7 +52,7 @@ namespace ELEPHANTSRPG.Screens
                 _content = new ContentManager(ScreenManager.Game.Services, "Content");
             }
 
-            map = new Map();
+            _map = new Tilemap("Maps/startMap.txt");
             player = new Player(new Vector2(200, 200));
             hud = new HUD(player);
             bullets = new List<WorldObject>();
@@ -70,12 +70,11 @@ namespace ELEPHANTSRPG.Screens
 
             player.LoadContent(_content);
             hud.LoadContent(_content);
-            map.LoadContent(_content);
+            _map.LoadContent(_content);
             foreach (var baddie in baddies)
             {
                 baddie.LoadContent(_content);
             }
-            map.populateMap();
 
             song = _content.Load<Song>("Music/CantinaRag");
             hurt =_content.Load<SoundEffect>("SFX/Hurt");
@@ -116,12 +115,12 @@ namespace ELEPHANTSRPG.Screens
                     
                 }
                 baddie.Update(gameTime);
-                if(map.Update(gameTime, baddie))
+                if(_map.CheckForCollisions(baddie))
                 {
                     baddie.UndoUpdate();
                 }
             }
-            if (map.Update(gameTime, player))
+            if (_map.CheckForCollisions(player) == true)
             {
                 player.UndoUpdate();
             }
@@ -181,7 +180,7 @@ namespace ELEPHANTSRPG.Screens
             var spriteBatch = ScreenManager.SpriteBatch;
             spriteBatch.Begin();
 
-            map.Draw(gameTime, spriteBatch);
+            _map.Draw(gameTime, spriteBatch);
             player.Draw(gameTime, spriteBatch);
             foreach (var baddie in baddies)
             {
