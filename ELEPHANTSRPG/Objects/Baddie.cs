@@ -14,7 +14,10 @@ namespace ELEPHANTSRPG.Objects
         private Player target;
 
         public Vector2 Position;
-        public BoundingRectangle Bounds;
+        private Vector2 _priorPosition;
+        public override BoundingRectangle Bounds { get => _bounds; }
+        private BoundingRectangle _bounds;
+        private BoundingRectangle _priorBounds;
         public bool Attacked;
         public bool IsDead;
 
@@ -23,7 +26,7 @@ namespace ELEPHANTSRPG.Objects
         {
             Position = position;
             target = player;
-            Bounds = new BoundingRectangle(position + new Vector2(16,16), 32, 32);
+            _bounds = new BoundingRectangle(position + new Vector2(16,16), 32, 32);
         }
 
         public override void LoadContent(ContentManager content)
@@ -33,6 +36,8 @@ namespace ELEPHANTSRPG.Objects
 
         public override void Update(GameTime gameTime)
         {
+            _priorPosition = Position;
+            _priorBounds = _bounds;
             if (!IsDead)
             {
                 Vector2 newPosition = Vector2.Normalize(Position - target.Position);
@@ -46,8 +51,8 @@ namespace ELEPHANTSRPG.Objects
                     newPosition *= -1;
                     Position += newPosition * 75 * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 }
-                Bounds.X = Position.X + 16;
-                Bounds.Y = Position.Y + 16;
+                _bounds.X = Position.X + 16;
+                _bounds.Y = Position.Y + 16;
             }
         }
 
@@ -57,6 +62,12 @@ namespace ELEPHANTSRPG.Objects
             {
                 spriteBatch.Draw(texture, Position, Color.White);
             }
+        }
+
+        public void UndoUpdate()
+        {
+            Position = _priorPosition;
+            _bounds = _priorBounds;
         }
     }
 }

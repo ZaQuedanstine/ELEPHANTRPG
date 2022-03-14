@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using ELEPHANTSRPG.Collisions;
 
 
 namespace ELEPHANTSRPG.Objects
@@ -31,5 +32,7 @@ namespace ELEPHANTSRPG.Objects
         /// <param name="gameTime">used for time calculations</param>
         /// <param name="spriteBatch">the spritebatch that is drawing this object</param>
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
+
+        public abstract BoundingRectangle Bounds { get; }
     }
 }

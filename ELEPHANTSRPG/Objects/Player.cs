@@ -31,8 +31,8 @@ namespace ELEPHANTSRPG.Objects
         public Direction Direction { get; private set; }
         public Direction ShootingDirection{ get; private set; }
         public bool IsShooting { get; private set; } = false;
-        public Vector2 Position { get; private set; }
-        public BoundingRectangle Bounds { get => bounds; }
+        public Vector2 Position { get; set; }
+        public override BoundingRectangle Bounds { get => bounds; }
 
         public bool Hit;
         public bool IsDead;

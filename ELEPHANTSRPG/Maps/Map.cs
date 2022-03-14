@@ -17,7 +17,6 @@ namespace ELEPHANTSRPG.Maps
         private int height;
         private int[,] theMap;
         private Tile[,] tiles;
-        public bool PlayerIsCollidingWithSolidTile;
 
         public Map()
         {
@@ -31,6 +30,10 @@ namespace ELEPHANTSRPG.Maps
             for (int i = 2; i < width - 2; i++)
                 for (int j = 2; j < height - 2; j++)
                     theMap[i, j] = 1;
+            theMap[12, 7] = 0;
+            theMap[13, 7] = 0;
+            theMap[12, 8] = 0;
+            theMap[13, 8] = 0;
 
             tiles = new Tile[width, height];
             for (int i = 0; i < width; i++)
@@ -41,7 +44,6 @@ namespace ELEPHANTSRPG.Maps
                     else tiles[i, j] = new Tile(grass, false, new Vector2(i * 32, j * 32));
                 }
             }
-
         }
 
 
@@ -51,20 +53,20 @@ namespace ELEPHANTSRPG.Maps
             water = content.Load<Texture2D>("Sprites/water");
         }
 
-        public void Update(GameTime gameTIme, Player player)
+        public bool Update(GameTime gameTIme, WorldObject thing)
         {
-            PlayerIsCollidingWithSolidTile = false;
             for (int i = 0; i < width; i++)
                 for (int j = 0; j < height; j++)
                 {
                     if(tiles[i,j].IsSolid == true)
                     {
-                        if (tiles[i, j].Bounds.CollidesWith(player.Bounds))
+                        if (tiles[i, j].Bounds.CollidesWith(thing.Bounds))
                         {
-                            PlayerIsCollidingWithSolidTile = true;
+                            return true;
                         }
                     }
                 }
+            return false;
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

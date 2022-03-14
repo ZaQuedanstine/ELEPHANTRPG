@@ -55,3 +55,4 @@ C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Co
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\SFX\Explosion.xnb
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\SFX\Hurt.xnb
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\SFX\Shoot.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Sprites\explosion.xnb

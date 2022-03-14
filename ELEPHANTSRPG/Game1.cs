@@ -32,7 +32,7 @@ namespace ELEPHANTSRPG
 
         private void AddInitialScreens()
         {
-            _screenManager.AddScreen(new GamePlayScreen(), null);
+            _screenManager.AddScreen(new GamePlayScreen(this), null);
             _screenManager.AddScreen(new TitleScreen(), null);
         }
 

@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 using ELEPHANTSRPG.Maps;
+using ELEPHANTSRPG.Particle_System;
 
 namespace ELEPHANTSRPG.Screens
 {
@@ -28,9 +29,24 @@ namespace ELEPHANTSRPG.Screens
         private SoundEffect shoot;
         private SoundEffect hurt;
         private SoundEffect hit;
+        private bool gameOver = false;
+        private bool firstBoot = true;
+        private ExplosionParticleSystem explosions;
+        private Game _game;
+
+        public GamePlayScreen(Game game)
+        {
+            _game = game;
+        }
 
         public override void Activate()
         {
+            if (firstBoot)
+            {
+                explosions = new ExplosionParticleSystem(_game, 20);
+                _game.Components.Add(explosions);
+                firstBoot = false;
+            }
             if (_content == null)
             {
                 _content = new ContentManager(ScreenManager.Game.Services, "Content");
@@ -43,11 +59,11 @@ namespace ELEPHANTSRPG.Screens
             baddies = new Baddie[]
             {
                 new Baddie(new Vector2(700,350), player),
-                new Baddie(new Vector2(700,100), player),
+                new Baddie(new Vector2(700,150), player),
                 new Baddie(new Vector2(100,100), player),
                 new Baddie(new Vector2(100,350), player),
                 new Baddie(new Vector2(400,350), player),
-                new Baddie(new Vector2(200,50), player),
+                new Baddie(new Vector2(200,100), player),
             };
             bangers = _content.Load<SpriteFont>("bangers");
             bangersBig = _content.Load<SpriteFont>("bangersBig");
@@ -97,11 +113,15 @@ namespace ELEPHANTSRPG.Screens
                     hit.Play();
                     player.Hit = true;
                     baddie.Attacked = true;
+                    
                 }
                 baddie.Update(gameTime);
+                if(map.Update(gameTime, baddie))
+                {
+                    baddie.UndoUpdate();
+                }
             }
-            map.Update(gameTime, player);
-            if (map.PlayerIsCollidingWithSolidTile)
+            if (map.Update(gameTime, player))
             {
                 player.UndoUpdate();
             }
@@ -128,6 +148,7 @@ namespace ELEPHANTSRPG.Screens
                         hurt.Play();
                         baddie.IsDead = true;
                         (bullet as Bullet).IsOffScreen = true;
+                        explosions.PlacedExplosion(baddie.Position);
                     }
                 }
                 if ((bullet as Bullet).IsOffScreen)
@@ -141,6 +162,18 @@ namespace ELEPHANTSRPG.Screens
                 bullets.Remove(bullet);
             }
             hud.Update(gameTime);
+
+
+            if(gameOver)
+            {
+                var keyboardState = Keyboard.GetState();
+                if(keyboardState.IsKeyDown(Keys.Enter))
+                {
+                    Unload();
+                    Activate();
+                    gameOver = false;
+                }
+            }
         }
 
         public override void Draw(GameTime gameTime)
@@ -160,13 +193,22 @@ namespace ELEPHANTSRPG.Screens
             }
 
             hud.Draw(gameTime, spriteBatch, bangers);
-            if (player.IsDead) spriteBatch.DrawString(bangersBig, "Game Over!!", new Vector2(25, 100), Color.Red, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0);
+            if (player.IsDead)
+            {
+                gameOver = true;
+                spriteBatch.DrawString(bangersBig, "Game Over!!", new Vector2(25, 100), Color.Red, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0);
+            }
             int numOfBaddiesDead = 0;
             for (int i = 0; i < baddies.Length; i++)
             {
                 if (baddies[i].IsDead) numOfBaddiesDead++;
             }
-            if (numOfBaddiesDead == baddies.Length) spriteBatch.DrawString(bangersBig, "You WIN!!", new Vector2(75, 100), Color.Gold, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0);
+            if (numOfBaddiesDead == baddies.Length)
+            {
+                gameOver = true;
+                spriteBatch.DrawString(bangersBig, "You WIN!!", new Vector2(75, 100), Color.Gold, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0);
+            }
+            if (gameOver) spriteBatch.DrawString(bangers, "Press Enter to play again", new Vector2(500, 400), Color.Goldenrod, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0);
 
             spriteBatch.End();
         }

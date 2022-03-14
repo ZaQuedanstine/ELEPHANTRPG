@@ -4,6 +4,8 @@ Sprites grass.png and water.png created with Piskel
 
 Content/Sprites/grass_32x32.png - created by Alucard as part of his Platform Tiles Pack on OpenGameArt.Org (https://opengameart.org/content/platform-tiles-0), released under CC-BY 3.0
 
+Content/Sprites/explosion.png - created by Cuzco on OpenGameArt.Org (https://opengameart.org/content/explosion), released under public domain
+
 Content/Sprites/cloud.png - created by Mineat as part of his coulds and gust Pack on OpenGameArt.Org (https://opengameart.org/content/clouds-and-gust), released under CC-BY 3.0
 
 Content/Sprites/pack.png - created by congusbongus as part of his tiny gun icons on OpenGameArt.Org (https://opengameart.org/content/tiny-gun-ic
@@ -11,3 +13,4 @@ Content/Sprites/pack.png - created by congusbongus as part of his tiny gun icons
 Content/CantinaRag.mp3 - created by Jackson F Smith (https://freemusicarchive.org/music/Jackson_F_Smith/Jackson_Frederick_Smith/Cantina_Rag) released under CC BY-NC-ND 3.0 license
 
 Content/Buckbreak.mp3 - created by Ken Hamm (https://freemusicarchive.org/music/Ken_Hamm/Hi_and_Ho_We_Plant_Trees/set2-08-Ken_Hamm-Buckbreak_1945) released under CC BY-NC-ND 3.0 license
+

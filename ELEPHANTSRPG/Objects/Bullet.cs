@@ -11,7 +11,7 @@ namespace ELEPHANTSRPG.Objects
     public class Bullet: WorldObject
     {
         public bool IsOffScreen;
-        public BoundingRectangle Bounds { get => bounds; }
+        public override BoundingRectangle Bounds { get => bounds; }
 
         private BoundingRectangle bounds;
         const float velocity = 250;
