@@ -57,6 +57,7 @@ namespace ELEPHANTSRPG.Screens
             player = new Player(new Vector2(200, 200));
             hud = new HUD(player);
             bullets = new List<WorldObject>();
+            _map.LoadContent(_content);
             baddies = new Baddie[]
             {
                 new Baddie(new Vector2(700,350), player),
@@ -65,13 +66,20 @@ namespace ELEPHANTSRPG.Screens
                 new Baddie(new Vector2(100,350), player),
                 new Baddie(new Vector2(400,350), player),
                 new Baddie(new Vector2(200,100), player),
+
+                new Baddie(new Vector2(46 * _map.TileWidth, 6 * _map.TileHeight), player),
+                new Baddie(new Vector2(46 * _map.TileWidth, 22 * _map.TileHeight), player),
+                new Baddie(new Vector2(6 * _map.TileWidth, 45 * _map.TileHeight), player),
+                new Baddie(new Vector2(38 * _map.TileWidth, 45 * _map.TileHeight), player),
+                new Baddie(new Vector2(30 * _map.TileWidth, 25 * _map.TileHeight), player),
+                new Baddie(new Vector2(17 * _map.TileWidth, 19 * _map.TileHeight), player),
             };
             bangers = _content.Load<SpriteFont>("bangers");
             bangersBig = _content.Load<SpriteFont>("bangersBig");
 
             player.LoadContent(_content);
             hud.LoadContent(_content);
-            _map.LoadContent(_content);
+            
             foreach (var baddie in baddies)
             {
                 baddie.LoadContent(_content);
@@ -160,8 +168,8 @@ namespace ELEPHANTSRPG.Screens
                         baddie.IsDead = true;
                         (bullet as Bullet).IsOffMap = true;
                         Vector2 explosionPosition = new Vector2();
-                        explosionPosition.X = 300 - player.Position.X + baddie.Position.X;
-                        explosionPosition.Y = 150 - player.Position.Y + baddie.Position.Y;
+                        explosionPosition.X = 384 - player.Position.X + baddie.Position.X;
+                        explosionPosition.Y = 209 - player.Position.Y + baddie.Position.Y;
                         explosions.PlacedExplosion(explosionPosition);
                     }
                 }
@@ -192,8 +200,8 @@ namespace ELEPHANTSRPG.Screens
 
         public override void Draw(GameTime gameTime)
         {
-            float offsetx = 300 - player.Position.X;
-            float offsety = 150 - player.Position.Y;
+            float offsetx = 384 - player.Position.X;
+            float offsety = 209 - player.Position.Y;
             Matrix transform = Matrix.CreateTranslation(offsetx, offsety, 0);
             var spriteBatch = ScreenManager.SpriteBatch;
             spriteBatch.Begin(transformMatrix: transform);
@@ -213,7 +221,7 @@ namespace ELEPHANTSRPG.Screens
             if (player.IsDead)
             {
                 gameOver = true;
-                spriteBatch.DrawString(bangersBig, "Game Over!!", player.Position - new Vector2(250, 50), Color.Red, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0);
+                spriteBatch.DrawString(bangersBig, "Game Over!!", player.Position - new Vector2(384, 50), Color.Red, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0);
             }
             int numOfBaddiesDead = 0;
             for (int i = 0; i < baddies.Length; i++)
@@ -223,9 +231,9 @@ namespace ELEPHANTSRPG.Screens
             if (numOfBaddiesDead == baddies.Length)
             {
                 gameOver = true;
-                spriteBatch.DrawString(bangersBig, "You WIN!!", player.Position - new Vector2(250, 50), Color.Gold, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0);
+                spriteBatch.DrawString(bangersBig, "You WIN!!", player.Position - new Vector2(384, 50), Color.Gold, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0);
             }
-            if (gameOver) spriteBatch.DrawString(bangers, "Press Enter to play again", player.Position + new Vector2(200, 300), Color.Goldenrod, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0);
+            if (gameOver) spriteBatch.DrawString(bangers, "Press Enter to play again", player.Position + new Vector2(50, 209), Color.Goldenrod, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0);
 
             spriteBatch.End();
         }

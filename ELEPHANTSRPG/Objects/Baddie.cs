@@ -20,6 +20,9 @@ namespace ELEPHANTSRPG.Objects
         private BoundingRectangle _priorBounds;
         public bool Attacked;
         public bool IsDead;
+        private bool _enemyDetected;
+        private float patrolTime;
+        private Vector2 patrolDirection;
 
 
         public Baddie(Vector2 position, Player player)
@@ -27,6 +30,9 @@ namespace ELEPHANTSRPG.Objects
             Position = position;
             target = player;
             _bounds = new BoundingRectangle(position + new Vector2(16,16), 32, 32);
+            Random random = new Random();
+            patrolDirection = new Vector2(1, random.Next(-1, 1));
+            patrolDirection.Normalize();
         }
 
         public override void LoadContent(ContentManager content)
@@ -38,22 +44,41 @@ namespace ELEPHANTSRPG.Objects
         {
             _priorPosition = Position;
             _priorBounds = _bounds;
+
             if (!IsDead)
             {
-                Vector2 newPosition = Vector2.Normalize(Position - target.Position);
-                if (Attacked)
+                Vector2 distance = Position - target.Position;
+                if (Math.Sqrt(Math.Pow(distance.X, 2) + Math.Pow(distance.Y, 2)) < 350) _enemyDetected = true;
+                else _enemyDetected = false;
+                if (_enemyDetected)
                 {
-                    Position += newPosition * 100;
-                    Attacked = false;
+                    Vector2 newPosition = Vector2.Normalize(distance);
+                    if (Attacked)
+                    {
+                        Position += newPosition * 100;
+                        Attacked = false;
+                    }
+                    else
+                    {
+                        newPosition *= -1;
+                        Position += newPosition * 75 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    }
                 }
                 else
                 {
-                    newPosition *= -1;
-                    Position += newPosition * 75 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    patrolTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    Position += patrolDirection * 75 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if(patrolTime >= 2)
+                    {
+                        patrolDirection *= -1;
+                        patrolTime = 0;
+                    }
                 }
-                _bounds.X = Position.X + 16;
-                _bounds.Y = Position.Y + 16;
+                
             }
+
+            _bounds.X = Position.X + 16;
+            _bounds.Y = Position.Y + 16;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
