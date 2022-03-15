@@ -33,13 +33,13 @@ namespace ELEPHANTSRPG.Objects
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, SpriteFont font)
         {
-            spriteBatch.DrawString(font, "Life: ", new Vector2(10, 30), Color.White);
+            spriteBatch.DrawString(font, "Life: ", player.Position - new Vector2(300, 150), Color.White);
             for(int i = 0; i < totalPeanuts; i++ )
             {
                 
-                if(i == currentPeanut - 1) spriteBatch.Draw(peanuts, new Vector2(75 + (i * 37), 30), new Rectangle(0 + (32 * (int)lifeLeft), 0, 32, 32), Color.White);
-                if(i > currentPeanut - 1) spriteBatch.Draw(peanuts, new Vector2(75 + (i * 37), 30), new Rectangle(0 + (32 * 4), 0, 32, 32), Color.White);
-                else if(i < currentPeanut - 1) spriteBatch.Draw(peanuts, new Vector2(75 + (i * 37), 30), new Rectangle(0, 0, 32, 32), Color.White);
+                if(i == currentPeanut - 1) spriteBatch.Draw(peanuts, player.Position - new Vector2(240 - (i * 37), 150), new Rectangle(0 + (32 * (int)lifeLeft), 0, 32, 32), Color.White);
+                if(i > currentPeanut - 1) spriteBatch.Draw(peanuts, player.Position - new Vector2(240 - (i * 37), 150), new Rectangle(0 + (32 * 4), 0, 32, 32), Color.White);
+                else if(i < currentPeanut - 1) spriteBatch.Draw(peanuts, player.Position - new Vector2(240 - (i * 37), 150), new Rectangle(0, 0, 32, 32), Color.White);
             }
         }
     }

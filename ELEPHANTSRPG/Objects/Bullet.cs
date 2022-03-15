@@ -10,27 +10,27 @@ namespace ELEPHANTSRPG.Objects
 {
     public class Bullet: WorldObject
     {
-        public bool IsOffScreen;
+        public bool IsOffMap;
         public override BoundingRectangle Bounds { get => bounds; }
 
         private BoundingRectangle bounds;
         const float velocity = 250;
         private Texture2D texture;
         private Direction direction;
-        private Vector2 position;
+        public Vector2 Position;
         private int maxX;
         private int maxY;
         private float angle;
 
-        public Bullet(Direction bulletDirection, Vector2 initialPosition)
+        public Bullet(Direction bulletDirection, Vector2 initialPosition, int maxRightDistance, int maxDownDistance)
         {
             direction = bulletDirection;
-            position = initialPosition;
-            position.X += 16;
-            position.Y += 8;
-            maxX = 800;
-            maxY = 450;
-            bounds = new BoundingRectangle(position.X + 16, position.Y + 16, 4, 8);
+            Position = initialPosition;
+            Position.X += 16;
+            Position.Y += 8;
+            maxX = maxRightDistance;
+            maxY = maxDownDistance;
+            bounds = new BoundingRectangle(Position.X + 16, Position.Y + 16, 4, 8);
             switch(direction)
             {
                 case Direction.East:
@@ -50,7 +50,7 @@ namespace ELEPHANTSRPG.Objects
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.White, angle, new Vector2(16, 16), 1, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, Position, null, Color.White, angle, new Vector2(16, 16), 1, SpriteEffects.None, 0);
         }
 
         public override void LoadContent(ContentManager content)
@@ -63,22 +63,22 @@ namespace ELEPHANTSRPG.Objects
             switch(direction)
             {
                 case Direction.North:
-                    position += new Vector2(0, -velocity * (float)gameTime.ElapsedGameTime.TotalSeconds);
+                    Position += new Vector2(0, -velocity * (float)gameTime.ElapsedGameTime.TotalSeconds);
                     break;
                 case Direction.East:
-                    position += new Vector2(velocity * (float)gameTime.ElapsedGameTime.TotalSeconds, 0);
+                    Position += new Vector2(velocity * (float)gameTime.ElapsedGameTime.TotalSeconds, 0);
                     break;
                 case Direction.South:
-                    position += new Vector2(0, velocity * (float)gameTime.ElapsedGameTime.TotalSeconds);
+                    Position += new Vector2(0, velocity * (float)gameTime.ElapsedGameTime.TotalSeconds);
                     break;
                 case Direction.West:
-                    position += new Vector2(-velocity * (float)gameTime.ElapsedGameTime.TotalSeconds, 0);
+                    Position += new Vector2(-velocity * (float)gameTime.ElapsedGameTime.TotalSeconds, 0);
                     break;
 
             }
-            bounds.X = position.X + 16;
-            bounds.Y = position.Y + 16;
-            if (position.X < -32 || position.X > maxX || position.Y < -32 || position.Y > maxY) IsOffScreen = true;
+            bounds.X = Position.X + 16;
+            bounds.Y = Position.Y + 16;
+            if (Position.X < -32 || Position.X > maxX || Position.Y < -32 || Position.Y > maxY) IsOffMap = true;
         }
     }
 }

@@ -69,5 +69,10 @@ namespace ELEPHANTSRPG.Objects
             Position = _priorPosition;
             _bounds = _priorBounds;
         }
+
+        public void updateBounds(BoundingRectangle rectangle)
+        {
+            _bounds = rectangle;
+        }
     }
 }
