@@ -16,16 +16,20 @@
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/Banner.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/bullet.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/cloud.png</File>
+    <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/ESkeleton.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/explosion.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/grass.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/grass_32x32.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/health.png</File>
+    <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/HouseTileSet.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/pack.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/player.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/tileset.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/water.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

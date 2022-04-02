@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using ELEPHANTSRPG.Collisions;
+using ELEPHANTSRPG.Maps;
 
 namespace ELEPHANTSRPG.Objects
 {
@@ -23,12 +24,13 @@ namespace ELEPHANTSRPG.Objects
         private bool _enemyDetected;
         private float patrolTime;
         private Vector2 patrolDirection;
+        private Tilemap _map;
 
-
-        public Baddie(Vector2 position, Player player)
+        public Baddie(Vector2 position, Player player, Tilemap map)
         {
             Position = position;
             target = player;
+            _map = map;
             _bounds = new BoundingRectangle(position + new Vector2(16,16), 32, 32);
             Random random = new Random();
             patrolDirection = new Vector2(1, random.Next(-1, 1));
@@ -37,11 +39,12 @@ namespace ELEPHANTSRPG.Objects
 
         public override void LoadContent(ContentManager content)
         {
-            texture = content.Load<Texture2D>("Sprites/baddie");
+            texture = content.Load<Texture2D>("Sprites/ESkeleton");
         }
 
         public override void Update(GameTime gameTime)
         {
+            Attacked = false;
             _priorPosition = Position;
             _priorBounds = _bounds;
 
@@ -53,51 +56,59 @@ namespace ELEPHANTSRPG.Objects
                 if (_enemyDetected)
                 {
                     Vector2 newPosition = Vector2.Normalize(distance);
-                    if (Attacked)
+                    if (_bounds.CollidesWith(target.Bounds))
                     {
-                        Position += newPosition * 100;
-                        Attacked = false;
+                        Attacked = true;
+                        target.Hit = true;
+                        UpdatePosition(Position + newPosition * 100);
+                        while (_map.CollidesWith(this))
+                        {
+                            Vector2 direction = Vector2.Normalize(Position - target.Position);
+                            direction *= -1;
+                            Position += direction * 10;
+                            _bounds = new BoundingRectangle(Position + new Vector2(16, 16), 32, 32);
+                        }
                     }
                     else
                     {
                         newPosition *= -1;
-                        Position += newPosition * 75 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                        UpdatePosition(Position + newPosition * 75 * (float)gameTime.ElapsedGameTime.TotalSeconds);
                     }
                 }
                 else
                 {
                     patrolTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    Position += patrolDirection * 75 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    UpdatePosition(Position + patrolDirection * 75 * (float)gameTime.ElapsedGameTime.TotalSeconds);
                     if(patrolTime >= 2)
                     {
                         patrolDirection *= -1;
                         patrolTime = 0;
                     }
                 }
-                
             }
 
-            _bounds.X = Position.X + 16;
-            _bounds.Y = Position.Y + 16;
+            if (_map.CollidesWith(this)) UndoUpdate();
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (!IsDead)
             {
-                spriteBatch.Draw(texture, Position, Color.White);
+                spriteBatch.Draw(texture, Position, new Rectangle(0, 0, 32, 32), Color.White);
             }
         }
 
-        public void UndoUpdate()
+
+        private void UpdatePosition(Vector2 newPosition)
+        {
+            Position = newPosition;
+            _bounds.X = Position.X + 16;
+            _bounds.Y = Position.Y + 16;
+        }
+        private void UndoUpdate()
         {
             Position = _priorPosition;
             _bounds = _priorBounds;
-        }
-
-        public void updateBounds(BoundingRectangle rectangle)
-        {
-            _bounds = rectangle;
         }
     }
 }

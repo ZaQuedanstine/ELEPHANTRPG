@@ -55,3 +55,6 @@ C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\Content\Sprites\cloud.xnb
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\Content\Sprites\grass_32x32.xnb
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\Content\Sprites\pack.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\Content\Sprites\explosion.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\Content\Sprites\tileset.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\Content\Maps\startMap.txt

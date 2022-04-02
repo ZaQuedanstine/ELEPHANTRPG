@@ -39,9 +39,9 @@ namespace ELEPHANTSRPG.Maps
             var tilesetRows = _tilesetTexture.Height / TileHeight;
             _tiles = new Rectangle[tilesetColumns * tilesetRows];
 
-            for(int y = 0; y < tilesetColumns; y++)
+            for(int y = 0; y < tilesetRows; y++)
             {
-                for (int x = 0; x < tilesetRows; x++)
+                for (int x = 0; x < tilesetColumns; x++)
                 {
                     int index = y * tilesetColumns + x;
                     _tiles[index] = new Rectangle(x * TileWidth, y * TileHeight, TileWidth, TileHeight);
@@ -76,7 +76,7 @@ namespace ELEPHANTSRPG.Maps
             }
         }
 
-        public bool CheckForCollisions(WorldObject thing)
+        public bool CollidesWith(WorldObject thing)
         {
             for (int y = 0; y < MapHeight; y++)
             {
@@ -84,7 +84,7 @@ namespace ELEPHANTSRPG.Maps
                 {
                     int index = y * MapWidth + x;
                     int maptile = _map[index];
-                    if (maptile == 2 || maptile == 3)
+                    if (maptile > 2)
                     {
                         BoundingRectangle bounds = new BoundingRectangle(new Vector2(x * TileWidth + 16, y * TileHeight + 16), 32, 32);
                         if (thing.Bounds.CollidesWith(bounds))

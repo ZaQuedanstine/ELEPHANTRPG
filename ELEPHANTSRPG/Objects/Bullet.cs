@@ -80,5 +80,10 @@ namespace ELEPHANTSRPG.Objects
             bounds.Y = Position.Y + 16;
             if (Position.X < -32 || Position.X > maxX || Position.Y < -32 || Position.Y > maxY) IsOffMap = true;
         }
+
+        public void OnCollision(WorldObject thing)
+        {
+
+        }
     }
 }

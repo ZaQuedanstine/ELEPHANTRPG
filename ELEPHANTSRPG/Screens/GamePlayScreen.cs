@@ -53,26 +53,26 @@ namespace ELEPHANTSRPG.Screens
                 _content = new ContentManager(ScreenManager.Game.Services, "Content");
             }
 
-            _map = new Tilemap("Maps/startMap.txt");
-            player = new Player(new Vector2(200, 200));
+            _map = new Tilemap("Maps/world.txt");
+            player = new Player(new Vector2(200, 200), _map);
             hud = new HUD(player);
             bullets = new List<WorldObject>();
             _map.LoadContent(_content);
             baddies = new Baddie[]
             {
-                new Baddie(new Vector2(700,350), player),
-                new Baddie(new Vector2(700,150), player),
-                new Baddie(new Vector2(100,100), player),
-                new Baddie(new Vector2(100,350), player),
-                new Baddie(new Vector2(400,350), player),
-                new Baddie(new Vector2(200,100), player),
+                new Baddie(new Vector2(700,350), player, _map),
+                new Baddie(new Vector2(700,150), player, _map),
+                new Baddie(new Vector2(100,100), player, _map),
+                new Baddie(new Vector2(100,350), player, _map),
+                new Baddie(new Vector2(400,350), player, _map),
+                new Baddie(new Vector2(200,100), player, _map),
 
-                new Baddie(new Vector2(46 * _map.TileWidth, 6 * _map.TileHeight), player),
-                new Baddie(new Vector2(46 * _map.TileWidth, 22 * _map.TileHeight), player),
-                new Baddie(new Vector2(6 * _map.TileWidth, 45 * _map.TileHeight), player),
-                new Baddie(new Vector2(38 * _map.TileWidth, 45 * _map.TileHeight), player),
-                new Baddie(new Vector2(30 * _map.TileWidth, 25 * _map.TileHeight), player),
-                new Baddie(new Vector2(17 * _map.TileWidth, 19 * _map.TileHeight), player),
+                new Baddie(new Vector2(46 * _map.TileWidth, 6 * _map.TileHeight), player, _map),
+                new Baddie(new Vector2(46 * _map.TileWidth, 22 * _map.TileHeight), player, _map),
+                new Baddie(new Vector2(6 * _map.TileWidth, 45 * _map.TileHeight), player, _map),
+                new Baddie(new Vector2(38 * _map.TileWidth, 45 * _map.TileHeight), player, _map),
+                new Baddie(new Vector2(30 * _map.TileWidth, 25 * _map.TileHeight), player, _map),
+                new Baddie(new Vector2(17 * _map.TileWidth, 19 * _map.TileHeight), player, _map),
             };
             bangers = _content.Load<SpriteFont>("bangers");
             bangersBig = _content.Load<SpriteFont>("bangersBig");
@@ -114,38 +114,15 @@ namespace ELEPHANTSRPG.Screens
         {
             //update player
             if (!player.IsDead) player.Update(gameTime);
+            
+            //update all the baddies
             foreach (var baddie in baddies)
             {
-                if (!baddie.IsDead && baddie.Bounds.CollidesWith(player.Bounds))
-                {
-                    hit.Play();
-                    player.Hit = true;
-                    baddie.Attacked = true;
-                    baddie.Update(gameTime);
-                    while (_map.CheckForCollisions(baddie))
-                    {
-                        Vector2 direction = Vector2.Normalize(baddie.Position - player.Position);
-                        direction *= -1;
-                        baddie.Position += direction * 10;
-
-                        baddie.updateBounds(new BoundingRectangle(baddie.Position + new Vector2(16, 16), 32, 32));
-                    }
-                }
-                else
-                {
-                    baddie.Update(gameTime);
-                    if (_map.CheckForCollisions(baddie))
-                    {
-                        baddie.UndoUpdate();
-                    }
-                }
-            }
-            if (_map.CheckForCollisions(player) == true)
-            {
-                player.UndoUpdate();
+                baddie.Update(gameTime);
+                if (baddie.Attacked == true) hit.Play();
             }
 
-            //addd any bullets the player is shooting
+            //add any bullets the player is shooting
             if (player.IsShooting)
             {
                 Bullet bullet = new Bullet(player.ShootingDirection, player.Position, _map.MapWidth * _map.TileWidth, _map.MapHeight * _map.TileHeight);
@@ -155,7 +132,6 @@ namespace ELEPHANTSRPG.Screens
             }
 
             //updates bullets and removes any that are not on the screen
-            //checks for collisions with baddies and kills them on contact
             List<WorldObject> bulletsToRemove = new List<WorldObject>();
             foreach (var bullet in bullets)
             {

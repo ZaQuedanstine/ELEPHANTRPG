@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using ELEPHANTSRPG.Collisions;
+using ELEPHANTSRPG.Maps;
 
 namespace ELEPHANTSRPG.Objects
 {
@@ -49,13 +50,15 @@ namespace ELEPHANTSRPG.Objects
         private KeyboardState previousKeyboardState;
         private double animationTimer;
         private Rectangle rectangle = new Rectangle(0,0,32,32);
-        
+        private Tilemap _map;
 
-        public Player(Vector2 startPos)
+
+        public Player(Vector2 startPos, Tilemap map)
         {
             Position = startPos;
             shootTimeDelay = 0.4;
             bounds = new BoundingRectangle(startPos.X + 16, startPos.Y + 16, 20, 32);
+            _map = map;
         }
 
         public override void LoadContent(ContentManager content)
@@ -149,6 +152,9 @@ namespace ELEPHANTSRPG.Objects
             //Updates the bounds
             bounds.X = Position.X + 16;
             bounds.Y = Position.Y + 16;
+            if (_map.CollidesWith(this)) UndoUpdate();
+
+            
         }
 
         public void UndoUpdate()
