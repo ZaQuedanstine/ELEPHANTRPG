@@ -33,8 +33,9 @@ namespace ELEPHANTSRPG
         private void AddInitialScreens()
         {
             _screenManager.AddScreen(new GamePlayScreen(this), null);
+            //_screenManager.AddScreen(new House(this), null);
             _screenManager.AddScreen(new TitleScreen(), null);
-            //_screenManager.AddScreen(new House(), null);
+            
         }
 
         protected override void Initialize()

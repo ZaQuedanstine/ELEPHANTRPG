@@ -18,10 +18,12 @@ namespace ELEPHANTSRPG.Screens
         private Tilemap _map;
         private ContentManager _content;
         private Player _player;
-
-        public House()
+        BasicEffect effect;
+        Game game;
+        Model chest;
+        public House(Game game)
         {
-
+            this.game = game;
         }
 
         public override void Activate()
@@ -30,10 +32,12 @@ namespace ELEPHANTSRPG.Screens
             {
                 _content = new ContentManager(ScreenManager.Game.Services, "Content");
             }
-            _map = new Tilemap("Maps/home.txt");
+            _map = new Tilemap("Maps/home.txt", new Vector2(5 * 32, 11 * 32));
             _map.LoadContent(_content);
-            _player = new Player(new Vector2(50, 100), _map);
+            _player = new Player(_map.PlayerStartPos, _map);
             _player.LoadContent(_content);
+            chest = _content.Load<Model>("tank");
+            effect = new BasicEffect(game.GraphicsDevice);
         }
 
         public override void Unload()
@@ -49,11 +53,16 @@ namespace ELEPHANTSRPG.Screens
 
         public override void Draw(GameTime gameTime)
         {
+            Matrix world = Matrix.CreateRotationY(0f) * Matrix.CreateTranslation(new Vector3(10, 10, 0));
+            Matrix view = Matrix.CreateLookAt(new Vector3(20, 30, 20), new Vector3(10, 10, 0), Vector3.Up);
+            Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, game.GraphicsDevice.Viewport.AspectRatio, 1, 1000);
+            
             var spriteBatch = ScreenManager.SpriteBatch;
             spriteBatch.Begin();
             _map.Draw(gameTime, spriteBatch);
             _player.Draw(gameTime, spriteBatch);
             spriteBatch.End();
+            chest.Draw(world, view, projection);
         }
 
     }

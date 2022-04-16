@@ -14,13 +14,15 @@ namespace ELEPHANTSRPG.Maps
         public int TileWidth, TileHeight, MapWidth, MapHeight;
         Texture2D _tilesetTexture;
         Rectangle[] _tiles;
-        
-        int[] _map;
-        string _fileName;
+        public Vector2 PlayerStartPos;
 
-        public Tilemap(string fileName)
+        int[] _map;
+        public string _fileName;
+
+        public Tilemap(string fileName, Vector2 PlayerPos)
         {
             _fileName = fileName;
+            PlayerStartPos = PlayerPos;
         }
 
         public void LoadContent(ContentManager content)

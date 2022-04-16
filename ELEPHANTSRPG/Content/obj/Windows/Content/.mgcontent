@@ -7,11 +7,14 @@
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/bangers.spritefont</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/bangersBig.spritefont</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/blank.png</File>
+    <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/cube.dae</File>
+    <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/engine_diff_tex.tga</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Music/Buckbreak.mp3</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Music/CantinaRag.mp3</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/SFX/Explosion.wav</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/SFX/Hurt.WAV</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/SFX/Shoot.WAV</File>
+    <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/SimpleBook1.fbx</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/baddie.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/Banner.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/bullet.png</File>
@@ -26,8 +29,17 @@
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/player.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/tileset.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/water.png</File>
+    <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/tank.fbx</File>
+    <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/turret_alt_diff_tex.tga</File>
+    <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/untitled.fbx</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

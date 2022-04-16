@@ -57,4 +57,8 @@ C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\Content\Sprites\pack.xnb
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\Content\Sprites\explosion.xnb
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\Content\Sprites\tileset.xnb
-C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\Content\Maps\startMap.txt
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\Content\Sprites\ESkeleton.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\Content\Sprites\HouseTileSet.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\Content\Maps\home.txt
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\Content\Maps\world.txt
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Release\netcoreapp3.1\Content\Chest.xnb

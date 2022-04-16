@@ -50,7 +50,7 @@ namespace ELEPHANTSRPG.Objects
         private KeyboardState previousKeyboardState;
         private double animationTimer;
         private Rectangle rectangle = new Rectangle(0,0,32,32);
-        private Tilemap _map;
+        public Tilemap _map;
 
 
         public Player(Vector2 startPos, Tilemap map)
@@ -149,12 +149,10 @@ namespace ELEPHANTSRPG.Objects
             }
 
             if (IsShooting) rectangle.X = 96;
+
             //Updates the bounds
             bounds.X = Position.X + 16;
             bounds.Y = Position.Y + 16;
-            if (_map.CollidesWith(this)) UndoUpdate();
-
-            
         }
 
         public void UndoUpdate()

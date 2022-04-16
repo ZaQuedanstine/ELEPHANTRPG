@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Music/Buckbreak.mp3</SourceFile>
+  <SourceTime>2022-02-25T21:26:30.5180811-06:00</SourceTime>
+  <DestFile>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/bin/Windows/Music/Buckbreak.xnb</DestFile>
+  <DestTime>2022-04-15T15:24:01.4049485-05:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2020-08-10T11:17:54-05:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2020-08-10T11:17:54-05:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/bin/Windows/Music/Buckbreak.wma</string>
+  </BuildOutput>
+</PipelineBuildEvent>
