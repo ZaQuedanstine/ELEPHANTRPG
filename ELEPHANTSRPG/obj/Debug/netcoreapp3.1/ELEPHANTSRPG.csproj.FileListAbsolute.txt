@@ -76,3 +76,5 @@ C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Co
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\turret_alt_diff_tex.xnb
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\turret_alt_diff_tex_0.xnb
 C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\bangersBig.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Sprites\PeanutButter.xnb
+C:\Users\abrah\source\repos\ELEPHANTSRPG\ELEPHANTSRPG\bin\Debug\netcoreapp3.1\Content\Sprites\tankBox.xnb

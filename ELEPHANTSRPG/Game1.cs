@@ -20,7 +20,6 @@ namespace ELEPHANTSRPG
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-
             var screenFactory = new ScreenFactory();
             Services.AddService(typeof(IScreenFactory), screenFactory);
 
@@ -33,7 +32,7 @@ namespace ELEPHANTSRPG
         private void AddInitialScreens()
         {
             _screenManager.AddScreen(new GamePlayScreen(this), null);
-            //_screenManager.AddScreen(new House(this), null);
+            _screenManager.AddScreen(new InstructionsScreen(this), null);
             _screenManager.AddScreen(new TitleScreen(), null);
             
         }

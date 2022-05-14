@@ -35,6 +35,7 @@ namespace ELEPHANTSRPG.Objects
         public Vector2 Position { get; set; }
         public override BoundingRectangle Bounds { get => bounds; }
 
+        public bool TankEquipped;
         public bool Hit;
         public bool IsDead;
         public int TotalNumOfPeanuts = 3;

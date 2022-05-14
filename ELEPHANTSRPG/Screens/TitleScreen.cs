@@ -68,7 +68,7 @@ namespace ELEPHANTSRPG.Screens
             PlayerIndex playerIndex;
             if(_startGame.Occurred(input, ControllingPlayer, out playerIndex))
             {
-                MediaPlayer.Stop();
+                //MediaPlayer.Stop();
                 this.IsExiting = true;
             }
         }

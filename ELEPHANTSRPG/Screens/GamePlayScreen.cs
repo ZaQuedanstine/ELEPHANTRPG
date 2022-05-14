@@ -28,6 +28,8 @@ namespace ELEPHANTSRPG.Screens
         private SpriteFont bangersBig;
         private Baddie[] baddies;
         private Teleports teleport;
+        private PeanutButter peanutButter;
+        private TankBox tankBox;
         private ContentManager _content;
         private Song song;
         private SoundEffect shoot;
@@ -38,7 +40,7 @@ namespace ELEPHANTSRPG.Screens
         private ExplosionParticleSystem explosions;
         private Game _game;
         private KeyboardState priorKeyboardState = new KeyboardState();
-        Model tank;
+        private Tank theTank;
 
         public GamePlayScreen(Game game)
         {
@@ -70,16 +72,19 @@ namespace ELEPHANTSRPG.Screens
                         new Baddie(new Vector2(38 * _map.TileWidth, 45 * _map.TileHeight), player, _map),
                         new Baddie(new Vector2(30 * _map.TileWidth, 25 * _map.TileHeight), player, _map),
                         new Baddie(new Vector2(17 * _map.TileWidth, 19 * _map.TileHeight), player, _map),
-
                     };
                     foreach (var baddie in baddies)
                     {
                         baddie.LoadContent(_content);
                     }
+                    tankBox._collected = true;
+                    peanutButter._collected = true;
                     break;
 
                 case "Maps/home.txt":
                     teleport = new Teleports(new Vector2(5 * 32, 11 * 32), world);
+                    tankBox._collected = false;
+                    peanutButter._collected = false;
                     break;
             }
         }
@@ -96,7 +101,6 @@ namespace ELEPHANTSRPG.Screens
                 _content = new ContentManager(ScreenManager.Game.Services, "Content");
             }
 
-            tank = _content.Load<Model>("tank");
             world = new Tilemap("Maps/world.txt", new Vector2(12 * 32 + 1, 18 * 32 + 1));
             home = new Tilemap("Maps/home.txt", new Vector2(5 * 32, 11 * 32));
             world.LoadContent(_content);
@@ -104,6 +108,13 @@ namespace ELEPHANTSRPG.Screens
             _map = world;
             teleport = new Teleports(new Vector2(12 * 32, 17 * 32), home);
             player = new Player(_map.PlayerStartPos, _map);
+            theTank = new Tank(_game, player);
+            peanutButter = new PeanutButter(new Vector2(2 * 32, 2 * 32), player);
+            peanutButter._collected = true;
+            peanutButter.LoadContent(_content);
+            tankBox = new TankBox(new Vector2(5 * 32, 5 * 32), player);
+            tankBox._collected = true;
+            tankBox.LoadContent(_content);
             hud = new HUD(player);
             bullets = new List<WorldObject>();
             baddies = new Baddie[]
@@ -163,7 +174,9 @@ namespace ELEPHANTSRPG.Screens
             KeyboardState keyboard = Keyboard.GetState();
             //update player
             if (!player.IsDead) player.Update(gameTime);
-
+            peanutButter.Update(gameTime);
+            tankBox.Update(gameTime);
+            theTank.Update();
             if (_map.CollidesWith(player)) player.UndoUpdate();
             
             //update all the baddies
@@ -242,6 +255,8 @@ namespace ELEPHANTSRPG.Screens
             spriteBatch.Begin(transformMatrix: transform);
 
             _map.Draw(gameTime, spriteBatch);
+            peanutButter.Draw(gameTime, spriteBatch);
+            tankBox.Draw(gameTime, spriteBatch);
             player.Draw(gameTime, spriteBatch);
             foreach (var baddie in baddies)
             {
@@ -275,32 +290,7 @@ namespace ELEPHANTSRPG.Screens
             if (gameOver) spriteBatch.DrawString(bangers, "Press Enter to play again", player.Position + new Vector2(50, 209), Color.Goldenrod, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0);
 
             spriteBatch.End();
-
-            //if(_map._fileName == "Maps/home.txt")
-            //{
-            float rotation = 0f;
-            switch (player.Direction)
-            {
-                case ELEPHANTSRPG.Objects.Direction.North:
-                    rotation = MathHelper.ToRadians(180);
-                    break;
-                case ELEPHANTSRPG.Objects.Direction.South:
-                    rotation = MathHelper.ToRadians(0);
-                    break;
-                case ELEPHANTSRPG.Objects.Direction.East:
-                    rotation = MathHelper.ToRadians(90);
-                    break;
-                case ELEPHANTSRPG.Objects.Direction.West:
-                    rotation = MathHelper.ToRadians(-90);
-                    break;
-            }
-
-                Matrix world = Matrix.CreateRotationY(rotation) * Matrix.CreateTranslation(new Vector3(10, 10, 0));
-                Matrix view = Matrix.CreateLookAt(new Vector3(20, 30, 60), new Vector3(10, 10, 0), Vector3.Up);
-                Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, _game.GraphicsDevice.Viewport.AspectRatio, 1, 1000);
-                
-                tank.Draw(world, view, projection);
-            //}
+            if(player.TankEquipped)theTank.Draw();
         }
     }
 }

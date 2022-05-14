@@ -26,7 +26,9 @@
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/health.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/HouseTileSet.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/pack.png</File>
+    <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/PeanutButter.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/player.png</File>
+    <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/tankBox.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/tileset.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/Sprites/water.png</File>
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/tank.fbx</File>
@@ -34,6 +36,8 @@
     <File>C:/Users/abrah/source/repos/ELEPHANTSRPG/ELEPHANTSRPG/Content/untitled.fbx</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
